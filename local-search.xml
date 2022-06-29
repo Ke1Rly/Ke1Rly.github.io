@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Kerberos协议与NTLM认证</title>
+    <link href="/2022/06/29/Kerberos%E5%8D%8F%E8%AE%AE%E4%B8%8ENTLM%E8%AE%A4%E8%AF%81/"/>
+    <url>/2022/06/29/Kerberos%E5%8D%8F%E8%AE%AE%E4%B8%8ENTLM%E8%AE%A4%E8%AF%81/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Kerberos协议"><a href="#Kerberos协议" class="headerlink" title="Kerberos协议"></a>Kerberos协议</h3><h5 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h5><p><strong>Kerberos</strong>是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。这个词又指麻省理工学院为这个协议开发的一套计算机软件。</p><h5 id="协议内容："><a href="#协议内容：" class="headerlink" title="协议内容："></a>协议内容：</h5><ul><li><p>client：需要进行认证的客户端</p></li><li><p>KDC（Key Distribution Center）&#x3D; 密钥分发中心</p></li><li><p>AS（Authentication Server）&#x3D; 认证服务器</p></li><li><p>TGS（Ticket Granting Server）&#x3D; 票据授权服务器</p></li><li><p>AD (Active Directory) &#x3D;存放client白名单和用户密码</p></li><li><p>TGT（Ticket Granting Ticket）&#x3D; 票据授权票据，票据的票据</p></li><li><p>server：提供服务的服务端</p></li></ul><p>进行验证时，AS和TGS是在KDC中的</p><h5 id="简洁的验证流程："><a href="#简洁的验证流程：" class="headerlink" title="简洁的验证流程："></a>简洁的验证流程：</h5><p>在进行Kerberos验证时，分为三步：</p><ol><li>首先我们需要client(客户端)向KDC(密钥分发中心)发送第一次请求，在KDC接受到请求后将发送过来的hash值交给AS(认证服务器)进行验证，此刻AD会验证client是否在白名单中，如果在白名单中，即AS验证成功，AS随即生成TGT(票据授权票据)。</li><li>在第一步client经过AS验证成功后，AS生成了TGT返回给了client，这是第一次验证。client在接收到TGT之后进行第二次验证，将刚刚接收到的TGT发送给KDC的TGS(票据授权服务器)进行验证，如果验证成功，TGS将会发送对应server的票据(ST)给client。</li><li>最后，经过两次验证，client已经从KDC那里拿到了server的ticket，所以最后一步，客户端只需要将得到的票据(ST)发送给Server进行效验，成功后即可访问server。</li></ol><p><img src="https://tva3.sinaimg.cn/large/007u0ID7ly1h3oyc4x7wvj31rg11pqi1.jpg" alt="11111"></p><p>​                                                                (图片来源：Y5neKO)</p><h3 id="NTLM协议"><a href="#NTLM协议" class="headerlink" title="NTLM协议"></a>NTLM协议</h3><h5 id="简介：-1"><a href="#简介：-1" class="headerlink" title="简介："></a>简介：</h5><p>NTLM 是指telnet的一种验证身份方式，即问询&#x2F;应答身份验证协议，是 Windows NT 早期版本的标准安全协议，Windows 2000 支持 NTLM 是为了保持向后兼容。Windows 2000内置三种基本安全协议之一。</p><h5 id="关键词："><a href="#关键词：" class="headerlink" title="关键词："></a>关键词：</h5><ul><li>NTLM Hash：存储在SAM数据库及NTDS数据库中对密码进行 Hash摘要计算后的结果</li><li>NTLM：除 Kerberos之外的一种网络认证协议，只支持 Windows</li><li>LSASS：Windows系统的安全机制(lsass.exe)。用于本地安全和登陆策略</li></ul><h5 id="验证流程："><a href="#验证流程：" class="headerlink" title="验证流程："></a>验证流程：</h5><p>本地认证的过程中，用户登录时，系统会将用户输入的明文密码加密成NTLM Hash，然后和SAM文件中的NTLM Hash进行比较从而完成认证，在域环境中，域内用户的密码哈希是存在域控的 NTDS.dit 文件里面的。</p><p>SAM文件是<strong>windows的用户账户数据库</strong>,所有用户的登录名及口令等相关信息都会保存在这个文件中。</p><p>SAM文件路径  C:\Windows\System32\Config\SAM</p><p>当用户注销、重启、锁屏后，操作系统会让 winlogon.exe 显示登录界面（输入框）。当 winlogon.exe 接收输入后，会将密码交给lsass进程。lsass.exe 是一个系统进程，用于微软Windows系统的安全机制。</p><p>备注：在NTLM hash之前，windows是使用LM hash验证的LM Hash其本质是使用DES加密，从windows vista和windows server2008开始 windows默认禁用LM Hash。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>WEB</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>DC-1靶机渗透</title>
     <link href="/2022/06/29/DC-1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF/"/>
     <url>/2022/06/29/DC-1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF/</url>
