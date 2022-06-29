@@ -16,16 +16,16 @@
   <meta name="author" content="Ke1R">
   <meta name="keywords" content="">
   
-    <meta name="description" content="DC-1靶机渗透思路：下载链接：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;dc-1,292&#x2F; 打开虚拟机在DC-1靶机的设置中修改网络适配器为NAT模式。 记得记一下DC-1的MAC地址。 ![3I5UXP35%7I7&#96;($BOBVEJ](https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007u0ID7ly1h3of43kqilj30nw0ru0wj.jpg)">
+    <meta name="description" content="DC-1靶机渗透思路：下载链接：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;dc-1,292&#x2F; 打开虚拟机在DC-1靶机的设置中修改网络适配器为NAT模式。 记得记一下DC-1的MAC地址。 ![3I5UXP35%7I7&#96;($BOBVEJ](https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007u0ID7ly1h3ozt0y2ppj30nw0ru0wj.jpg)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DC-1靶机渗透">
 <meta property="og:url" content="https://ke1r.cn/2022/06/29/DC-1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF/index.html">
 <meta property="og:site_name" content="Ke1R&#39;s Blog">
-<meta property="og:description" content="DC-1靶机渗透思路：下载链接：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;dc-1,292&#x2F; 打开虚拟机在DC-1靶机的设置中修改网络适配器为NAT模式。 记得记一下DC-1的MAC地址。 ![3I5UXP35%7I7&#96;($BOBVEJ](https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007u0ID7ly1h3of43kqilj30nw0ru0wj.jpg)">
+<meta property="og:description" content="DC-1靶机渗透思路：下载链接：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;dc-1,292&#x2F; 打开虚拟机在DC-1靶机的设置中修改网络适配器为NAT模式。 记得记一下DC-1的MAC地址。 ![3I5UXP35%7I7&#96;($BOBVEJ](https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007u0ID7ly1h3ozt0y2ppj30nw0ru0wj.jpg)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ke1r.cn/img/test3.png">
 <meta property="article:published_time" content="2022-06-28T18:53:17.000Z">
-<meta property="article:modified_time" content="2022-06-29T04:10:48.790Z">
+<meta property="article:modified_time" content="2022-06-29T04:21:37.317Z">
 <meta property="article:author" content="Ke1R">
 <meta property="article:tag" content="WEB">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.4k 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          15 分钟
+          12 分钟
         
       </span>
     
@@ -301,7 +301,7 @@
               <h3 id="DC-1靶机渗透思路："><a href="#DC-1靶机渗透思路：" class="headerlink" title="DC-1靶机渗透思路："></a>DC-1靶机渗透思路：</h3><p>下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/dc-1,292/">https://www.vulnhub.com/entry/dc-1,292/</a></p>
 <p>打开虚拟机在DC-1靶机的设置中修改网络适配器为NAT模式。</p>
 <p>记得记一下DC-1的MAC地址。</p>
-<p>![3I5UXP35%7I7&#96;(<del>$B</del>OBVEJ](<a target="_blank" rel="noopener" href="https://tva1.sinaimg.cn/large/007u0ID7ly1h3of43kqilj30nw0ru0wj.jpg">https://tva1.sinaimg.cn/large/007u0ID7ly1h3of43kqilj30nw0ru0wj.jpg</a>)</p>
+<p>![3I5UXP35%7I7&#96;(<del>$B</del>OBVEJ](<a target="_blank" rel="noopener" href="https://tva1.sinaimg.cn/large/007u0ID7ly1h3ozt0y2ppj30nw0ru0wj.jpg">https://tva1.sinaimg.cn/large/007u0ID7ly1h3ozt0y2ppj30nw0ru0wj.jpg</a>)</p>
 <p>首先我们知道了拿到靶机需要拿到5个flag，然后根据每个flag的提示找到下一个flag。</p>
 <h4 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h4><p>DC-1和kali现在属于同一个网段，我们根据靶机的MAC地址，使用nmap扫描可以找到DC-1的ip地址，然后进行端口扫描。</p>
 <p><code>nmap -sP 192.168.140.0/24</code></p>
@@ -310,7 +310,7 @@
 <p>发现80端口开放，查看网站信息，发现是一个Drupal框架搭建的网站，使用Wappalyzer，或者查看robots.txt暴露出的信息，可以获取到Drupal的版本。</p>
 <p><img src="https://tva4.sinaimg.cn/large/007u0ID7ly1h3oj6n41ptj317z0nqgtq.jpg" srcset="/img/loading.gif" lazyload alt="JR6FVYIQ4A8373}))_4C0BL"></p>
 <h4 id="MSF"><a href="#MSF" class="headerlink" title="MSF"></a>MSF</h4><p>在MSF中搜索，drupal利用模块进行攻击。</p>
-<p>![0<a target="_blank" rel="noopener" href="https://tva4.sinaimg.cn/large/007u0ID7ly1h3oj8q3dvmj30sa0ln1kq.jpg">BF(_@K)0PI5RZ2JL9(I)1</a></p>
+<p><img src="http://tva1.sinaimg.cn/large/007u0ID7ly1h3ozv1ryfij30vm0ln1kx.jpg" srcset="/img/loading.gif" lazyload alt="QRTO@148N@YJ1QDC%T9EOKG"></p>
 <p>使用exploit命令执行攻击，利用drupal_drupalgeddon2</p>
 <p><img src="https://tva1.sinaimg.cn/large/007u0ID7ly1h3oj92fhdej30s60luh9b.jpg" srcset="/img/loading.gif" lazyload alt="QRTO@148N@YJ1QDC%T9EOKG"></p>
 <p>ls可以看到 flag1.txt</p>
@@ -329,14 +329,14 @@
 <p>username：dbuser</p>
 <p>password：R0ck3t</p>
 <h4 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h4><p>使用命令shell拿到shell，然后再使用命令<code>python -c import pty; pty.spawn(&#39;/bin/bash&#39;)&quot;</code>获取一个交互式shell</p>
-<p>![OUKDH}5X{)}DQA83&#96;%_)2M1](<a target="_blank" rel="noopener" href="https://tva2.sinaimg.cn/large/007u0ID7ly1h3oj390rqij311q0lv4kj.jpg">https://tva2.sinaimg.cn/large/007u0ID7ly1h3oj390rqij311q0lv4kj.jpg</a>)</p>
+<p><img src="https://tva2.sinaimg.cn/large/007u0ID7ly1h3oj390rqij311q0lv4kj.jpg" srcset="/img/loading.gif" lazyload alt="QRTO@148N@YJ1QDC%T9EOKG"></p>
 <p>查看users表，如果pass是明文，我们就可以直接登录192.168.140.132这个网站，密文产生的脚本是&#x2F;scripts&#x2F;password-hash.sh，使用这个脚本产生123456密文，产生的密文替换数据库中admin的密文，admin用户的密码就能改成123456，完成后使用update命令更新。</p>
-<p>![J&#96;&#96;K1F&#96;AZ(8TFV~3Z8C5@7W](<a target="_blank" rel="noopener" href="https://tvax1.sinaimg.cn/large/007u0ID7ly1h3oi0457huj313m0cq49y.jpg">https://tvax1.sinaimg.cn/large/007u0ID7ly1h3oi0457huj313m0cq49y.jpg</a>)</p>
+<p><img src="https://tvax1.sinaimg.cn/large/007u0ID7ly1h3oi0457huj313m0cq49y.jpg" srcset="/img/loading.gif" lazyload alt="QRTO@148N@YJ1QDC%T9EOKG"></p>
 <h4 id="登录网站"><a href="#登录网站" class="headerlink" title="登录网站"></a>登录网站</h4><p>登录drupal，发现flag3，提示要使用find命令</p>
 <p><img src="https://tva1.sinaimg.cn/large/007u0ID7ly1h3oj25aheij316n0kaq8o.jpg" srcset="/img/loading.gif" lazyload alt="P5@8%I_~_K8YJ80Q9%PB84L"></p>
 <h4 id="爆破ssh密码"><a href="#爆破ssh密码" class="headerlink" title="爆破ssh密码"></a>爆破ssh密码</h4><p>并且发现了flag4且打开了ssh，所以尝试使用九头蛇爆破ssh密码，得到登录密码为orange，登录之后在flag4用户的home目录中，发现flag4.txt</p>
 <p><img src="https://tva2.sinaimg.cn/large/007u0ID7ly1h3oirmt3o0j314e0m0e81.jpg" srcset="/img/loading.gif" lazyload alt="T8G@`FG@TOTDA55`L}TX5QJ"></p>
-<p>![NH6V0PS2HJK(X)FTZZV@&#96;AQ](<a target="_blank" rel="noopener" href="https://tvax3.sinaimg.cn/large/007u0ID7ly1h3oiqz1jlkj30vt0ire2h.jpg">https://tvax3.sinaimg.cn/large/007u0ID7ly1h3oiqz1jlkj30vt0ire2h.jpg</a>)</p>
+<p><img src="https://tvax3.sinaimg.cn/large/007u0ID7ly1h3oiqz1jlkj30vt0ire2h.jpg" srcset="/img/loading.gif" lazyload alt="QRTO@148N@YJ1QDC%T9EOKG"></p>
 <h4 id="find提权"><a href="#find提权" class="headerlink" title="find提权"></a>find提权</h4><p>然后使用find命令提权：</p>
 <p>使用方法find (一个路径或文件必须存在) -exec 执行命令 （结束）;</p>
 <p><img src="https://tva3.sinaimg.cn/large/007u0ID7ly1h3oit9dc74j30hs0f2qee.jpg" srcset="/img/loading.gif" lazyload alt="G(II4(UWC3TH3881ND(GMYA"></p>
