@@ -16,16 +16,16 @@
   <meta name="author" content="Ke1R">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MISC作为CTF中比较重要的一类题型，分值占比较大，为了帮助大家更好的学习MISC的做题方法，我总结了常见的图片类型中的几种题型及工具：  图片，音频，视频  首先就是大家常见的图片分析，图片修复，图片修改长宽高，图片拼接，二维码扫描，LSB隐写等等。  遇到图片类型的题，首先最基础的图片分析，将图片丢到winhex或者010editor中分析。分析此图片有无隐写信息或分析是否包含压缩包等。以下">
+    <meta name="description" content="MISC作为CTF中比较重要的一类题型，分值占比较大，为了帮助大家更好的学习MISC的做题方法，我总结了常见的图片类型中的几种题型及工具：  图片，音频，视频  首先就是大家常见的图片分析，图片修复，图片修改长宽高，图片拼接，二维码扫描，LSB隐写等等。  遇到图片类型的题，首先最基础的图片分析，将图片丢到winhex或者010editor中分析。分析此图片有无隐写信息或分析是否包含压缩包等。 （">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF-MISC基础知识之图片">
 <meta property="og:url" content="https://ke1r.cn/2022/04/05/CTF-MISC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
 <meta property="og:site_name" content="Ke1R&#39;s Blog">
-<meta property="og:description" content="MISC作为CTF中比较重要的一类题型，分值占比较大，为了帮助大家更好的学习MISC的做题方法，我总结了常见的图片类型中的几种题型及工具：  图片，音频，视频  首先就是大家常见的图片分析，图片修复，图片修改长宽高，图片拼接，二维码扫描，LSB隐写等等。  遇到图片类型的题，首先最基础的图片分析，将图片丢到winhex或者010editor中分析。分析此图片有无隐写信息或分析是否包含压缩包等。以下">
+<meta property="og:description" content="MISC作为CTF中比较重要的一类题型，分值占比较大，为了帮助大家更好的学习MISC的做题方法，我总结了常见的图片类型中的几种题型及工具：  图片，音频，视频  首先就是大家常见的图片分析，图片修复，图片修改长宽高，图片拼接，二维码扫描，LSB隐写等等。  遇到图片类型的题，首先最基础的图片分析，将图片丢到winhex或者010editor中分析。分析此图片有无隐写信息或分析是否包含压缩包等。 （">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ke1r.cn/img/test1.png">
 <meta property="article:published_time" content="2022-04-05T07:31:13.000Z">
-<meta property="article:modified_time" content="2022-04-17T07:27:42.927Z">
+<meta property="article:modified_time" content="2022-09-09T10:00:39.018Z">
 <meta property="article:author" content="Ke1R">
 <meta property="article:tag" content="MISC">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          3.1k 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          19 分钟
+          26 分钟
         
       </span>
     
@@ -291,7 +291,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年4月17日 下午
+                    本文最后更新于：2022年9月9日 晚上
                   
                 
               </p>
@@ -304,7 +304,10 @@
 <blockquote>
 <p>首先就是大家常见的图片分析，图片修复，图片修改长宽高，图片拼接，二维码扫描，LSB隐写等等。</p>
 </blockquote>
-<p>遇到图片类型的题，首先最基础的图片分析，将图片丢到winhex或者010editor中分析。分析此图片有无隐写信息或分析是否包含压缩包等。以下是总结的各类型文件的文件头：</p>
+<p>遇到图片类型的题，首先最基础的图片分析，将图片丢到winhex或者010editor中分析。分析此图片有无隐写信息或分析是否包含压缩包等。</p>
+<p><img src="http://tva4.sinaimg.cn/large/007u0ID7gy1h60frqvvwkj30tw0lnnik.jpg" srcset="/img/loading.gif" lazyload alt="1662712290424">（010Editor使用示例)</p>
+<p>010Editor下载链接  <a target="_blank" rel="noopener" href="https://download.sweetscape.com/010EditorWin32Installer11.0.1.exe">https://download.sweetscape.com/010EditorWin32Installer11.0.1.exe</a></p>
+<p>以下是总结的各类型文件的文件头：</p>
 <blockquote>
 <p>PNG (png)，文件头：89504E47<br>GIF (gif)，文件头：47494638<br>TIFF (tif)，文件头：49492A00<br>Windows Bitmap (bmp)，文件头：424DC001<br>CAD (dwg)，文件头：41433130<br>Adobe Photoshop (psd)，文件头：38425053<br>Rich Text Format (rtf)，文件头：7B5C727466<br>XML (xml)，文件头：3C3F786D6C<br>HTML (html)，文件头：68746D6C3E<br>Email [thorough only] (eml)，文件头：44656C69766572792D646174653A<br>Outlook Express (dbx)，文件头：CFAD12FEC5FD746F<br>Outlook (pst)，文件头：2142444E<br>旧版office MS Word&#x2F;Excel (xls.or.doc or.ppt)，文件头：D0CF11E0<br>MS Access (mdb)，文件头：5374616E64617264204A<br>WordPerfect (wpd)，文件头：FF575043<br>Adobe Acrobat (pdf)，文件头：255044462D312E<br>Quicken (qdf)，文件头：AC9EBD8F<br>ZIP Archive (zip)，文件头：504B0304<br>RAR Archive (rar)，文件头：52617221<br>Wave (wav)，文件头：57415645</p>
 <p>JPEG (jpg)，文件头：FFD8FFE1<br>&lt;.img<br>src&#x3D;”data:image…….”<br>alt&#x3D;”Base64 encoded image” &#x2F;&gt; 生成图片（常用于base64隐写图片）</p>
@@ -329,7 +332,8 @@
 </blockquote>
 </li>
 </ul>
-<p>​     </p>
+<p>​     <img src="http://tvax4.sinaimg.cn/large/007u0ID7gy1h60h1fjsvgj30tm0eudgp.jpg" srcset="/img/loading.gif" lazyload alt="1662714741963_副本"></p>
+<p>(binwalk和foremost使用示例)</p>
 <p> 当遇到图片隐写题时，可以使用<strong>Stegsolve</strong>工具（可用于逐帧分析GIF图片，lsb隐写等）</p>
 <p>​      使用方法如下：</p>
 <blockquote>
@@ -339,7 +343,9 @@
 <p>Frame Browser:帧浏览器</p>
 <p>Image Combiner:拼图，图片拼接</p>
 </blockquote>
-<p>  <strong>stegdetect</strong> 查询jpg图片经过哪种隐写 将图片复制到     stegdetect.exe所在目录下右键PowerShell命令</p>
+<p>  <img src="http://tva3.sinaimg.cn/large/007u0ID7gy1h60guabx4xj30sd0kaqfa.jpg" srcset="/img/loading.gif" lazyload alt="1662714463482"></p>
+<p>( stegsolve使用示例)</p>
+<p> <strong>stegdetect</strong> 查询jpg图片经过哪种隐写 将图片复制到     stegdetect.exe所在目录下右键PowerShell命令</p>
 <blockquote>
 <p>.\stegdetect.exe -tjopi -s 10.0 .\hide.jpg</p>
 </blockquote>
@@ -369,12 +375,29 @@
 <blockquote>
 <p>zsteg -E “extradata:0” xxxx.png &gt; flag</p>
 </blockquote>
+<p><img src="http://tva1.sinaimg.cn/large/007u0ID7gy1h60h5nhzkbj30eh05n0vt.jpg" srcset="/img/loading.gif" lazyload alt="1662715206840"></p>
+<p>(zsteg使用示例)</p>
+<p><strong>SilentEye</strong> 可以轻松地使用隐写术，将消息隐藏到图片或声音中。它提供了一个很好的界面，并通过使用插件系统轻松集成了新的隐写算法和加密过程。</p>
+<p><img src="http://tvax2.sinaimg.cn/large/007u0ID7gy1h60he36v0ej30o90ei7cr.jpg" srcset="/img/loading.gif" lazyload alt="1662715680393"></p>
+<p><strong>WaterMake</strong>盲水印工具：该工具提供了文字水印、图片水印和隐形水印三种水印效果，用于图片隐写题，提示blind等关键字时可能会使用。</p>
+<p><img src="http://tvax4.sinaimg.cn/large/007u0ID7gy1h60hnc5i0nj30rr0kpk0o.jpg" srcset="/img/loading.gif" lazyload alt="1662716181338"></p>
+<p><strong>ARCHPR</strong>压缩包密码解压工具：支持多种密码方式，有<strong>暴力、掩码、字典、明文、担保winzip恢复、口令来自密匙</strong>等类型，一般用来爆破压缩包密码。</p>
+<p><img src="http://tva4.sinaimg.cn/large/007u0ID7gy1h60hv80ojwj30g90ft0xf.jpg" srcset="/img/loading.gif" lazyload alt="1662716675522"></p>
 <p>**MP3stego(**音频隐写)详细看</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/myloveprogrmming/article/details/52641916">https://blog.csdn.net/myloveprogrmming/article/details/52641916</a></p>
 <p><strong>Audacity</strong> 音频查看工具</p>
 <p>针对音频题目的常用工具，具体使用教程见</p>
 <p><a target="_blank" rel="noopener" href="http://www.360doc.com/content/13/0620/17/1437142_294320939.shtml">http://www.360doc.com/content/13/0620/17/1437142_294320939.shtml</a></p>
-<p>时间有限，有空的时候还会继续补充。</p>
+<p>最后，还有一些<strong>在线MISC解题常用网站</strong>：</p>
+<p>各种在线工具大全：<a target="_blank" rel="noopener" href="https://readflag.cn/">https://readflag.cn/</a></p>
+<p>Brainfuck在线工具： <a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a>       <a target="_blank" rel="noopener" href="http://www.hiencode.com/brain.html">http://www.hiencode.com/brain.html</a></p>
+<p>蛇形解码：<a target="_blank" rel="noopener" href="http://serpent.online-domain-tools.com/">http://serpent.online-domain-tools.com/</a></p>
+<p>emoji解密：<a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/">https://aghorler.github.io/emoji-aes/</a>     <a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=937">http://www.atoolbox.net/Tool.php?Id=937</a></p>
+<p>中文电码查询：<a target="_blank" rel="noopener" href="http://code.mcdvisa.com/">http://code.mcdvisa.com/</a></p>
+<p>0宽字符隐写：<a target="_blank" rel="noopener" href="http://330k.github.io/misc_tools/unicode_steganography.html">http://330k.github.io/misc_tools/unicode_steganography.html</a></p>
+<p>G语言  &#x2F;&#x2F; GCode Viewer and Machine Simulator：<a target="_blank" rel="noopener" href="https://ncviewer.com/">https://ncviewer.com/</a></p>
+<p>RGB颜色数值转换：<a target="_blank" rel="noopener" href="https://www.qtool.net/colorsize">https://www.qtool.net/colorsize</a></p>
+<p>Unix时间戳：<a target="_blank" rel="noopener" href="https://tool.chinaz.com/tools/unixtime.aspx">https://tool.chinaz.com/tools/unixtime.aspx</a></p>
 
               
             </div>
