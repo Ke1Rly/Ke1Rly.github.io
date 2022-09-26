@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ke1r.cn/img/test2.png">
 <meta property="article:published_time" content="2022-04-17T07:14:17.000Z">
-<meta property="article:modified_time" content="2022-06-28T14:03:50.931Z">
+<meta property="article:modified_time" content="2022-09-26T07:50:58.613Z">
 <meta property="article:author" content="Ke1R">
 <meta property="article:tag" content="WEB">
 <meta name="twitter:card" content="summary_large_image">
@@ -291,7 +291,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年6月28日 晚上
+                    本文最后更新于：2022年9月26日 下午
                   
                 
               </p>
@@ -384,7 +384,7 @@
 <p>首先代码审计就是看两点，一有无漏洞，二有无可控变量。</p>
 <p>我们发现源代码最后76行有可控变量str通过get传参，并且发现有unserialize反序列化。</p>
 <p>我们再看到 flag.php 是在这个高亮化文件里面的，并且发现有class(类)：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileHandler</span> &#123;</span><br><br><span class="hljs-keyword">protected</span> <span class="hljs-variable">$op</span>;<br><span class="hljs-keyword">protected</span> <span class="hljs-variable">$filename</span>;<br><span class="hljs-keyword">protected</span> <span class="hljs-variable">$content</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileHandler</span> </span>&#123;<br><br><span class="hljs-keyword">protected</span> <span class="hljs-variable">$op</span>;<br><span class="hljs-keyword">protected</span> <span class="hljs-variable">$filename</span>;<br><span class="hljs-keyword">protected</span> <span class="hljs-variable">$content</span>;<br></code></pre></td></tr></table></figure>
 
 <p>在反序列化后，相当于重新生成了一个对像，这个对象在程序结束时 <strong>析构执行</strong>­_destruct（）&#x2F;&#x2F;第58行</p>
 <p>如果op值为2则强制将op的值变为1，content值为空，调用<strong>process函数</strong>。&#x2F;&#x2F;第20行</p>
@@ -392,11 +392,11 @@
 <p>这里我们需要读取到flag.php中的答案所以需要调用“读”函数&#x2F;&#x2F;第45行</p>
 <p>如果filename有值，则file_get_contents()函数把整个文件读入一个字符串中,如果给filename赋值为flag.php 那么我们就能读出flag了。</p>
 <p>但是在destruct函数中进行了判断把2强制转换成了1：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">function __destruct() &#123;<br>    <span class="hljs-keyword">if</span>($<span class="hljs-keyword">this</span>-&gt;op === <span class="hljs-string">&quot;2&quot;</span>)<br>        $<span class="hljs-keyword">this</span>-&gt;op = <span class="hljs-string">&quot;1&quot;</span>;<br>    $<span class="hljs-keyword">this</span>-&gt;content = <span class="hljs-string">&quot;&quot;</span>;<br>    $<span class="hljs-keyword">this</span>-&gt;process();<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;op === <span class="hljs-string">&quot;2&quot;</span>)<br>        <span class="hljs-variable language_">$this</span>-&gt;op = <span class="hljs-string">&quot;1&quot;</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;content = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">process</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>所以我们这里需要知道，用三个等号时，除了两个变量的值相同外，还必须这两个变量的类型相同，而用两个等号时，只需要两个变量值相同。</p>
 <p>我们构造payload时，构造op&#x3D;‘ 2’字符串，则op&#x3D;‘2’就不成立，此时op就成了我们自己设置的值。然后通过process()函数调用后：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">public</span> function process() &#123;<br>    <span class="hljs-keyword">if</span>($<span class="hljs-keyword">this</span>-&gt;op == <span class="hljs-string">&quot;1&quot;</span>) &#123;<br>        $<span class="hljs-keyword">this</span>-&gt;write();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>($<span class="hljs-keyword">this</span>-&gt;op == <span class="hljs-string">&quot;2&quot;</span>) &#123;<br>        $res = $<span class="hljs-keyword">this</span>-&gt;read();<br>        $<span class="hljs-keyword">this</span>-&gt;output($res);<br>    &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;op == <span class="hljs-string">&quot;1&quot;</span>) &#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">write</span>();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;op == <span class="hljs-string">&quot;2&quot;</span>) &#123;<br>        <span class="hljs-variable">$res</span> = <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">read</span>();<br>        <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-variable">$res</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p>因为这里为 op &#x3D;&#x3D; “2”为弱类型对比只需要值相等就能调用“读”函数。就能读出flag.php文件了。</p>
 <p><strong>构造payload</strong></p>

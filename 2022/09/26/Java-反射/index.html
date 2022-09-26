@@ -16,23 +16,23 @@
   <meta name="author" content="Ke1R">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Kerberos协议简介：Kerberos是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。这个词又指麻省理工学院为这个协议开发的一套计算机软件。 协议内容： client：需要进行认证的客户端  KDC（Key Distribution Center）&#x3D; 密钥分发中心  AS（Authentication Server）&#x3D; 认证服务器  TGS">
+    <meta name="description" content="Java-反射1.反射的概述：反射(Reflection),Java反射机制是在运行状态时，对于任意一个类，都能够获取到这个类的所有属性和方法，对于任意一个对象，都能够调用它的任意一个方法和属性(包括私有的方法和属性)，这种动态获取的信息以及动态调用对象的方法的功能就称为java的反射机制。 反射是java被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API获取任何类的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kerberos协议与NTLM认证">
-<meta property="og:url" content="https://ke1r.cn/2022/06/29/Kerberos%E5%8D%8F%E8%AE%AE%E4%B8%8ENTLM%E8%AE%A4%E8%AF%81/index.html">
+<meta property="og:title" content="JAVA-反射">
+<meta property="og:url" content="https://ke1r.cn/2022/09/26/Java-%E5%8F%8D%E5%B0%84/index.html">
 <meta property="og:site_name" content="Ke1R&#39;s Blog">
-<meta property="og:description" content="Kerberos协议简介：Kerberos是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。这个词又指麻省理工学院为这个协议开发的一套计算机软件。 协议内容： client：需要进行认证的客户端  KDC（Key Distribution Center）&#x3D; 密钥分发中心  AS（Authentication Server）&#x3D; 认证服务器  TGS">
+<meta property="og:description" content="Java-反射1.反射的概述：反射(Reflection),Java反射机制是在运行状态时，对于任意一个类，都能够获取到这个类的所有属性和方法，对于任意一个对象，都能够调用它的任意一个方法和属性(包括私有的方法和属性)，这种动态获取的信息以及动态调用对象的方法的功能就称为java的反射机制。 反射是java被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API获取任何类的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ke1r.cn/img/test4.png">
-<meta property="article:published_time" content="2022-06-29T04:10:27.000Z">
-<meta property="article:modified_time" content="2022-06-29T04:10:39.992Z">
+<meta property="og:image" content="https://ke1r.cn/img/test5.png">
+<meta property="article:published_time" content="2022-09-26T05:22:47.000Z">
+<meta property="article:modified_time" content="2022-09-26T07:58:11.242Z">
 <meta property="article:author" content="Ke1R">
-<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="JAVA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ke1r.cn/img/test4.png">
+<meta name="twitter:image" content="https://ke1r.cn/img/test5.png">
   
   
-  <title>Kerberos协议与NTLM认证 - Ke1R&#39;s Blog</title>
+  <title>JAVA-反射 - Ke1R&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Kerberos协议与NTLM认证"></span>
+            <span id="subtitle" data-typed-text="JAVA-反射"></span>
           
         </div>
 
@@ -217,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-29 12:10" pubdate>
-          2022年6月29日 中午
+        <time datetime="2022-09-26 13:22" pubdate>
+          2022年9月26日 下午
         </time>
       </span>
     
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          4.4k 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          12 分钟
+          37 分钟
         
       </span>
     
@@ -286,55 +286,117 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Kerberos协议与NTLM认证</h1>
+            <h1 style="display: none">JAVA-反射</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年6月29日 中午
+                    本文最后更新于：2022年9月26日 下午
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h3 id="Kerberos协议"><a href="#Kerberos协议" class="headerlink" title="Kerberos协议"></a>Kerberos协议</h3><h5 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h5><p><strong>Kerberos</strong>是一种计算机网络授权协议，用来在非安全网络中，对个人通信以安全的手段进行身份认证。这个词又指麻省理工学院为这个协议开发的一套计算机软件。</p>
-<h5 id="协议内容："><a href="#协议内容：" class="headerlink" title="协议内容："></a>协议内容：</h5><ul>
-<li><p>client：需要进行认证的客户端</p>
-</li>
-<li><p>KDC（Key Distribution Center）&#x3D; 密钥分发中心</p>
-</li>
-<li><p>AS（Authentication Server）&#x3D; 认证服务器</p>
-</li>
-<li><p>TGS（Ticket Granting Server）&#x3D; 票据授权服务器</p>
-</li>
-<li><p>AD (Active Directory) &#x3D;存放client白名单和用户密码</p>
-</li>
-<li><p>TGT（Ticket Granting Ticket）&#x3D; 票据授权票据，票据的票据</p>
-</li>
-<li><p>server：提供服务的服务端</p>
-</li>
+              <h1 id="Java-反射"><a href="#Java-反射" class="headerlink" title="Java-反射"></a>Java-反射</h1><h2 id="1-反射的概述："><a href="#1-反射的概述：" class="headerlink" title="1.反射的概述："></a>1.反射的概述：</h2><p><strong>反射</strong>(Reflection),Java反射机制是在运行状态时，对于任意一个类，都能够获取到这个类的<strong>所有属性和方法</strong>，对于任意一个对象，都能够<strong>调用它的任意一个方法和属性</strong>(包括<strong>私有</strong>的方法和属性)，这种动态获取的信息以及动态调用对象的方法的功能就称为java的反射机制。</p>
+<p>反射是java被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API获取任何类的内部信息，并且能直接操作任意对象的内部属性及方法。</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">Class</span> c = <span class="hljs-keyword">Class</span>.forName(“Java.lang.<span class="hljs-keyword">String</span>”)<br></code></pre></td></tr></table></figure>
+
+<p>流程示意图：</p>
+<p><img src="http://tvax2.sinaimg.cn/large/007u0ID7gy1h6jvpdyijrj30nh06fwes.jpg" srcset="/img/loading.gif" lazyload alt="302415386d4040322023995504e552d"></p>
+<p><strong>举例理解反射：</strong></p>
+<p>  假设一个人意外死亡，法医需要<strong>解剖</strong>来查看他的死因，以及他的<strong>属性</strong>(年龄，体重，呼吸道，各类器官…)</p>
+<p>  因为人已经死亡，我们<strong>解剖的过程</strong>也可以形象的理解为“反射”。<strong>得到完整的“包类名称”</strong>就相当于解剖获得器官的过程。</p>
+<p><strong>反射相关的主要API：</strong></p>
+<ul>
+<li><strong>java.lang.Class</strong>: 代表一个类</li>
+<li>java.lang.reflect.Method: 代表类的方法</li>
+<li>java.lang.reflect.Field: 代表类的成员变量</li>
+<li>java.lang.reflect.Constructor: 代表类的构造器</li>
 </ul>
-<p>进行验证时，AS和TGS是在KDC中的</p>
-<h5 id="简洁的验证流程："><a href="#简洁的验证流程：" class="headerlink" title="简洁的验证流程："></a>简洁的验证流程：</h5><p>在进行Kerberos验证时，分为三步：</p>
-<ol>
-<li>首先我们需要client(客户端)向KDC(密钥分发中心)发送第一次请求，在KDC接受到请求后将发送过来的hash值交给AS(认证服务器)进行验证，此刻AD会验证client是否在白名单中，如果在白名单中，即AS验证成功，AS随即生成TGT(票据授权票据)。</li>
-<li>在第一步client经过AS验证成功后，AS生成了TGT返回给了client，这是第一次验证。client在接收到TGT之后进行第二次验证，将刚刚接收到的TGT发送给KDC的TGS(票据授权服务器)进行验证，如果验证成功，TGS将会发送对应server的票据(ST)给client。</li>
-<li>最后，经过两次验证，client已经从KDC那里拿到了server的ticket，所以最后一步，客户端只需要将得到的票据(ST)发送给Server进行效验，成功后即可访问server。</li>
-</ol>
-<p><img src="https://tva3.sinaimg.cn/large/007u0ID7ly1h3oyc4x7wvj31rg11pqi1.jpg" srcset="/img/loading.gif" lazyload alt="11111"></p>
-<p>​                                                                (图片来源：Y5neKO)</p>
-<h3 id="NTLM协议"><a href="#NTLM协议" class="headerlink" title="NTLM协议"></a>NTLM协议</h3><h5 id="简介：-1"><a href="#简介：-1" class="headerlink" title="简介："></a>简介：</h5><p>NTLM 是指telnet的一种验证身份方式，即问询&#x2F;应答身份验证协议，是 Windows NT 早期版本的标准安全协议，Windows 2000 支持 NTLM 是为了保持向后兼容。Windows 2000内置三种基本安全协议之一。</p>
-<h5 id="关键词："><a href="#关键词：" class="headerlink" title="关键词："></a>关键词：</h5><ul>
-<li>NTLM Hash：存储在SAM数据库及NTDS数据库中对密码进行 Hash摘要计算后的结果</li>
-<li>NTLM：除 Kerberos之外的一种网络认证协议，只支持 Windows</li>
-<li>LSASS：Windows系统的安全机制(lsass.exe)。用于本地安全和登陆策略</li>
-</ul>
-<h5 id="验证流程："><a href="#验证流程：" class="headerlink" title="验证流程："></a>验证流程：</h5><p>本地认证的过程中，用户登录时，系统会将用户输入的明文密码加密成NTLM Hash，然后和SAM文件中的NTLM Hash进行比较从而完成认证，在域环境中，域内用户的密码哈希是存在域控的 NTDS.dit 文件里面的。</p>
-<p>SAM文件是<strong>windows的用户账户数据库</strong>,所有用户的登录名及口令等相关信息都会保存在这个文件中。</p>
-<p>SAM文件路径  C:\Windows\System32\Config\SAM</p>
-<p>当用户注销、重启、锁屏后，操作系统会让 winlogon.exe 显示登录界面（输入框）。当 winlogon.exe 接收输入后，会将密码交给lsass进程。lsass.exe 是一个系统进程，用于微软Windows系统的安全机制。</p>
-<p>备注：在NTLM hash之前，windows是使用LM hash验证的LM Hash其本质是使用DES加密，从windows vista和windows server2008开始 windows默认禁用LM Hash。</p>
+<p><strong>Class类的常用方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static ClassforName(String name)</td>
+<td>返回指定类名name的Class对象</td>
+</tr>
+<tr>
+<td>newInstance()</td>
+<td>在内存中生成一个实例</td>
+</tr>
+<tr>
+<td>getName()</td>
+<td>返回当前Class对象所表示的实体(类，接口，数组类或void)的名称</td>
+</tr>
+<tr>
+<td>Class getSuperClass()</td>
+<td>返回当前Class对象的父类的Class对象</td>
+</tr>
+<tr>
+<td>Class[] getinterfaces()</td>
+<td>获取当前Class对象的接口</td>
+</tr>
+<tr>
+<td>ClassLoader getClassLoader()</td>
+<td>返回该类的类加载器</td>
+</tr>
+<tr>
+<td>Field[] getDeclaredFields</td>
+<td>返回Field对象的一个数组</td>
+</tr>
+<tr>
+<td>Method getMethed(String name,Class.. parameterTypes)</td>
+<td>返回一个 Method 对象，它反映此 Class 对象所表示的类或接口的指定公共成员方法。</td>
+</tr>
+</tbody></table>
+<h2 id="2-获取Class对象的三种方式"><a href="#2-获取Class对象的三种方式" class="headerlink" title="2.获取Class对象的三种方式"></a>2.获取Class对象的三种方式</h2><p>1: 通过该实例变量提供的<code>getClass()</code>方法获取：</p>
+<p>2: 通过静态方法<code>Class.forName()</code>获取(要先知道class的完整类名)：</p>
+<p>3: 直接通过一个<code>class</code>的静态变量class获取：</p>
+<p>如图：</p>
+<p><img src="http://tvax4.sinaimg.cn/large/007u0ID7gy1h6jwq22mf1j30te0eyqge.jpg" srcset="/img/loading.gif" lazyload alt="1664167464019"></p>
+<p><strong>注意</strong>：</p>
+<p>运行期间，一个类中只有一个class对象产生，图中c1，c2，c3的hashCode都是相同的。</p>
+<p>且平常最常用的方法就是第二种。</p>
+<h2 id="获取运行时类的完整结构"><a href="#获取运行时类的完整结构" class="headerlink" title="获取运行时类的完整结构"></a>获取运行时类的完整结构</h2><p><strong>1：获取字段</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ke1r.reflection;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Field;<br><br><span class="hljs-comment">//获取类的信息</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test03</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException,NoSuchFieldException &#123;<br>        <span class="hljs-type">Class</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;com.ke1r.reflection.User&quot;</span>);<br><br>        <span class="hljs-comment">//获得类的名字</span><br>        System.out.println(c1.getName());<span class="hljs-comment">//获得包名+类名</span><br>        System.out.println(c1.getSimpleName());<span class="hljs-comment">//获得类名</span><br>        <span class="hljs-comment">//获得类的属性</span><br>        System.out.println(<span class="hljs-string">&quot;=========================&quot;</span>);<br>        Field[] fields = c1.getFields();<span class="hljs-comment">//只能找到public属性</span><br><br>        fields = c1.getDeclaredFields();<span class="hljs-comment">//找到全部的属性</span><br>        <span class="hljs-keyword">for</span> (Field field : fields) &#123;<br>            System.out.println(field);<br>        &#125;<br><br>        <span class="hljs-comment">//获得指定属性的值</span><br>        <span class="hljs-type">Field</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> c1.getDeclaredField(<span class="hljs-string">&quot;name&quot;</span>);<br>        System.out.println(name);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="http://tvax1.sinaimg.cn/large/007u0ID7gy1h6k0dcqytxj30ph06wagd.jpg" srcset="/img/loading.gif" lazyload alt="1664175020886"></p>
+<p>所有通过Class实例的方法可以获取Field实例，getField()，getFields()，getDeclaredField()，getDeclaredFields()；</p>
+<p>此外Field实例可以读取或设置某个对象的字段，如果存在访问限制，要首先调用setAccessible(true)来访问非public字段。</p>
+<p><strong>2：调用方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ke1r.reflection;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test03</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException, NoSuchFieldException, NoSuchMethodException &#123;<br>        <span class="hljs-type">Class</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;com.ke1r.reflection.User&quot;</span>);<br><br>        <span class="hljs-comment">//获得类的方法</span><br>        System.out.println(<span class="hljs-string">&quot;==================&quot;</span>);<br>        Method[] methods = c1.getMethods();<span class="hljs-comment">//获得本类及其父类的全部public方法</span><br>        <span class="hljs-keyword">for</span> (Method method : methods) &#123;<br>            System.out.println(<span class="hljs-string">&quot;正常的:&quot;</span>+method);<br>        &#125;<span class="hljs-comment">//公共的</span><br>        methods = c1.getDeclaredMethods();<span class="hljs-comment">//获得本类的所有方法</span><br>        <span class="hljs-keyword">for</span> (Method method : methods) &#123;<br>            System.out.println(<span class="hljs-string">&quot;getDeclaredMethods:&quot;</span>+method);<br>        &#125;<span class="hljs-comment">//全部的</span><br><br>        <span class="hljs-comment">//获得指定方法</span><br>        <span class="hljs-comment">//重载</span><br>        <span class="hljs-type">Method</span> <span class="hljs-variable">getName</span> <span class="hljs-operator">=</span> c1.getMethod(<span class="hljs-string">&quot;getName&quot;</span>, <span class="hljs-literal">null</span>);<br>        <span class="hljs-type">Method</span> <span class="hljs-variable">setName</span> <span class="hljs-operator">=</span> c1.getMethod(<span class="hljs-string">&quot;setName&quot;</span>, String.class);<br>        System.out.println(getName);<br>        System.out.println(setName);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="http://tvax2.sinaimg.cn/large/007u0ID7gy1h6k0r8uoe3j30vz0k1tze.jpg" srcset="/img/loading.gif" lazyload alt="1664175785733"></p>
+<p> 通过Class实例的方法可以获取Method实例：getMethod()，getMethods()，getDeclaredMethod()，getDeclaredMethods()；</p>
+<p>调用指定方法：</p>
+<p>通过<code>getMethod(String name,Class…parameterTypes</code>)方法取得一个Method对象,并设置此方法操作时所需要的类型。之后使用<code>Object invoke(Object obj,Object[] args)</code>进行调用，并向方法中传递要设置的obj对象的参数信息。若原方法声明为private，则需要在调用此invoke()方法前，显示调用方法对象的setAccessible(true)方法,则可以访问private方法。</p>
+<p>注意：Method、Field、Constructor对象都有**setAccessible()**方法。</p>
+<p>setAccessible()作用是启用和禁用访问安全检查的开关。</p>
+<p><strong>3：获得构造器方法</strong></p>
+<p>通过反射来创建新的实例，我们可以调用Class提供的<code>newInstance()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> Person.class.newInstance();<br></code></pre></td></tr></table></figure>
+
+<p>但是<strong>它只能调用该类的public无参数构造方法。</strong>如果想要调用任意构造方法，就需要用到API提供的<strong>Constructor</strong>对象，Constructor对象和Method很类似，但是不同之处仅在于它是一个构造方法，调用结果总是返回实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-keyword">package</span> com.ke1r.reflection;<br><br><span class="hljs-keyword">import</span> java.lang.reflect.Constructor;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test03</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException, NoSuchFieldException, NoSuchMethodException &#123;<br>        <span class="hljs-type">Class</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;com.ke1r.reflection.User&quot;</span>);<br><span class="hljs-comment">//获得指定的构造器</span><br>        System.out.println(<span class="hljs-string">&quot;=====================&quot;</span>);<br>        Constructor[] constructors = c1.getConstructors();<br>        <span class="hljs-keyword">for</span> (Constructor constructor : constructors) &#123;<br>            System.out.println(constructor);<br>        &#125;<br>        constructors = c1.getDeclaredConstructors();<br>        <span class="hljs-keyword">for</span> (Constructor constructor : constructors) &#123;<br>            System.out.println(<span class="hljs-string">&quot;###&quot;</span>+constructor);<br>        &#125;<br>        <span class="hljs-comment">//获得指定的构造器</span><br>        <span class="hljs-type">Constructor</span> <span class="hljs-variable">declaredConstructor</span> <span class="hljs-operator">=</span> c1.getDeclaredConstructor(String.class, <span class="hljs-type">int</span>.class, <span class="hljs-type">int</span>.class);<br>        System.out.println(<span class="hljs-string">&quot;指定:&quot;</span>+ declaredConstructor);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="http://tvax1.sinaimg.cn/large/007u0ID7gy1h6k1glzlooj30oy0700ys.jpg" srcset="/img/loading.gif" lazyload alt="1664177302531"></p>
+<p>通过Class实例方法可以获取Constructor实例：</p>
+<p>getConstructor()，getConstructors()，getDeclaredConstructor()，getDeclaredConstructors()</p>
+<h2 id="Java反射的优缺点"><a href="#Java反射的优缺点" class="headerlink" title="Java反射的优缺点"></a>Java反射的优缺点</h2><p><strong>优点：</strong></p>
+<p>可以实现动态创建对象和编译，有很大的灵活性。</p>
+<p><strong>缺点：</strong></p>
+<p>对性能有影响，使用反射机制基本上是一种解释操作，我们可以告诉JVM我们希望做什么并且它满足我们的要求，这类操作总是慢于直接执行相同的操作。</p>
+<p>测试效果：</p>
+<p><img src="http://tva1.sinaimg.cn/large/007u0ID7gy1h6k1z7ae89j30oy06xn1x.jpg" srcset="/img/loading.gif" lazyload alt="1664178340553"></p>
 
               
             </div>
@@ -346,7 +408,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/WEB/">#WEB</a>
+        <a href="/tags/JAVA/">#JAVA</a>
       
     </div>
   
@@ -358,8 +420,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Kerberos协议与NTLM认证</div>
-      <div>https://ke1r.cn/2022/06/29/Kerberos协议与NTLM认证/</div>
+      <div>JAVA-反射</div>
+      <div>https://ke1r.cn/2022/09/26/Java-反射/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +433,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月29日</div>
+          <div>2022年9月26日</div>
         </div>
       
       
@@ -401,18 +463,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/26/Java-%E5%8F%8D%E5%B0%84/" title="JAVA-反射">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JAVA-反射</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/29/DC-1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF/" title="DC-1靶机渗透">
-                        <span class="hidden-mobile">DC-1靶机渗透</span>
+                      <a href="/2022/06/29/Kerberos%E5%8D%8F%E8%AE%AE%E4%B8%8ENTLM%E8%AE%A4%E8%AF%81/" title="Kerberos协议与NTLM认证">
+                        <span class="hidden-mobile">Kerberos协议与NTLM认证</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
